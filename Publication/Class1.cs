@@ -1,92 +1,72 @@
 using System;
 
-class Publication
+namespace Lab1
 {
-    // Поля класу
-    private string title;
-    private string type; // Газета чи журнал
-    private double price;
-    private int pages;
-
-    // Властивості для доступу до полів
-    public string Title
+    public class Publication
     {
-        get { return title; }
-        set { title = value; }
-    }
+        private string title;
+        private string type;
+        private double price;
+        private int pages;
 
-    public string Type
-    {
-        get { return type; }
-        set { type = value; }
-    }
-
-    public double Price
-    {
-        get { return price; }
-        set { price = value; }
-    }
-
-    public int Pages
-    {
-        get { return pages; }
-        set { pages = value; }
-    }
-
-    // Конструктор без параметрів
-    public Publication()
-    {
-        // Ініціалізація через властивості
-        this.Title = "Невідоме видання";
-        this.Type = "газета";
-        this.Price = 5.0;
-        this.Pages = 30;
-    }
-
-    // Метод для виведення назви та типу видання
-    public void PrintInfo()
-    {
-        Console.WriteLine($"Назва: {this.Title}, Тип: {this.Type}");
-    }
-
-    // Метод для аналізу ціни та типу
-    public void AnalyzePrice()
-    {
-        if (this.Price > 10 && this.Type == "газета")
+        public string Title
         {
-            Console.WriteLine($"Це занадто дорога газета: {this.Price} грн.");
+            get { return title; }
+            set { title = value; }
         }
-        else if (this.Price < 10 && this.Type == "журнал")
+
+        public string Type
         {
-            Console.WriteLine($"Це дешевий журнал: {this.Price} грн.");
+            get { return type; }
+            set { type = value; }
         }
-        else
+
+        public double Price
         {
-            Console.WriteLine($"Це видання: {this.Type}. Його ціна: {this.Price} грн.");
+            get { return price; }
+            set { price = value; }
+        }
+
+        public int Pages
+        {
+            get { return pages; }
+            set { pages = value; }
+        }
+
+        public void DisplayPublication()
+        {
+            Console.WriteLine($"Title: {title}, Type: {type}");
+        }
+
+        public void AnalyzePrice()
+        {
+            if (price > 10 && type.ToLower() == "newspaper")
+            {
+                Console.WriteLine($"This is an expensive newspaper: {price}");
+            }
+            else if (price < 10 && type.ToLower() == "magazine")
+            {
+                Console.WriteLine($"This is a cheap magazine: {price}");
+            }
+            else
+            {
+                Console.WriteLine($"This publication is a {type}. Its price is {price}");
+            }
         }
     }
-}
 
-class Program
-{
-    static void Main()
+    class Program
     {
-        // Створення об'єкта друкарське видання
-        Publication pub = new Publication();
+        static void Main(string[] args)
+        {
+            Publication publication = new Publication();
+            publication.Title = "Tech Times";
+            publication.Type = "Newspaper";
+            publication.Price = 12;
+            publication.Pages = 24;
 
-        // Виведення інформації
-        pub.PrintInfo();
-
-        // Аналіз ціни
-        pub.AnalyzePrice();
-
-        // Зміна полів
-        pub.Title = "Журнал Сучасність";
-        pub.Type = "журнал";
-        pub.Price = 9.0;
-        pub.Pages = 50;
-
-        // Повторний аналіз
-        pub.AnalyzePrice();
+            publication.DisplayPublication();
+            publication.AnalyzePrice();
+        }
     }
 }
